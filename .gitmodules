@@ -1,0 +1,6 @@
+[submodule "dapple_packages/ds-token"]
+	path = dapple_packages/ds-token
+	url = https://github.com/nexusdev/ds-token
+[submodule "dapple_packages/ds-auth"]
+	path = dapple_packages/ds-auth
+	url = https://github.com/nexusdev/ds-auth
