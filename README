@@ -1,0 +1,37 @@
+ds-burner
+=========
+
+This repository contains a couple of utilities which will help you
+to conveniently burn your tokens in case you have too many of them.
+
+The file `burner.sol' defines the main burner.  It specialises in one
+particular kind of token but it makes sure that any tokens of that
+kind that it recieves will eventually get burned into oblivion.
+
+How does it do this?  Well, it needs to have a reference to something
+called a token supply manager, which is the other thing that this
+repository contains.
+
+The token supply manager in turn (`supply_manager.sol') is just a
+wrapper around a token balance database, which is a basic token
+building block from the `ds-token' repository (see Dapp-a-Day 6).
+
+Anyone who is able to call the supply manager is able to create or
+destroy whatever amount of tokens they want, so access to the supply
+manager is restricted using `DSAuth' (see Dapp-a-Day 4).
+
+To use a burner, a supply manager and a balance database together, the
+burner needs permission to call the manager, and the manager needs
+permission to call the database.  The burner, though, is unrestricted,
+which is kind of the whole point: anyone is able to use the burner to
+destroy tokens that they own.
+
+You can either call the `burn(uint)' method to have the burner pull
+tokens from you and burn them immediately, or you can transfer tokens
+to the burner directly using the ERC20 `transfer()' function and wait
+for someone to call the `burn()' method, which simply burns all the
+tokens that the burner currently has in its possession.
+
+So why would you want to "burn" tokens in the first place, you ask?
+
+Well... that's an excercise for the reader.
