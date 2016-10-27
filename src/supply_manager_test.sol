@@ -21,7 +21,7 @@ contract TestTokenSupplyManager is DSTokenSupplyManager
     }
 }
 
-contract DSTokenSupplyManagerTest is Test, DSAuthUser {
+contract DSTokenSupplyManagerTest is Test, DSAuthEvents {
     DSBalanceDB db;
     DSBasicAuthority authority;
     DSTokenSupplyManager manager;
@@ -32,13 +32,13 @@ contract DSTokenSupplyManagerTest is Test, DSAuthUser {
     function setUp() {
         db = new DSBalanceDB();
         manager = new DSTokenSupplyManager(db);
-        db.updateAuthority(authority, DSAuthModes.Authority);
+        db.setAuthority(authority);
         authority.setCanCall(
           manager, db, bytes4(sha3('addBalance(address,uint256)')), true);
         authority.setCanCall(
           manager, db, bytes4(sha3('subBalance(address,uint256)')), true);
 
-        manager.updateAuthority(authority, DSAuthModes.Authority);
+        manager.setAuthority(authority);
         authority.setCanCall(
           this, manager, bytes4(sha3('demand(uint256)')), true);
         authority.setCanCall(
