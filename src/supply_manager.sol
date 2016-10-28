@@ -1,3 +1,5 @@
+pragma solidity ^0.4.2;
+
 // Attach to your balance DB to have a way for system contracts to print/burn
 // tokens for themselves.
 

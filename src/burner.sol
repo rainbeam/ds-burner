@@ -1,3 +1,5 @@
+pragma solidity ^0.4.2;
+
 import 'ds-token/token.sol';
 import 'supply_manager.sol';
 
